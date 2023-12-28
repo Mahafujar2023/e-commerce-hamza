@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
-
     <head>
-        
         <meta charset="utf-8" />
         <title>@yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,6 +66,7 @@
 
         <!-- JAVASCRIPT -->
         <script src="{{ asset('Backend/assets/libs/jquery/jquery.min.js') }}"></script>
+        
         <script src="{{ asset('Backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('Backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
         <script src="{{ asset('Backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
@@ -76,7 +75,7 @@
         <!-- apexcharts -->
         <script src="{{ asset('Backend/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 
-        <!-- dashboard init -->
+        <!-- dashboard init --> 
         <script src="{{ asset('Backend/assets/js/pages/dashboard.init.js') }}"></script>
 
         <!-- App js -->

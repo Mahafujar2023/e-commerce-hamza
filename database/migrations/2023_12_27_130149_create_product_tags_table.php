@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_tags', function (Blueprint $table) {
-            $table->string('tag_id',11)->nullable();
+            $table->string('tag_id',11)->primary()->unique();
             $table->string('product_id',11)->nullable();
         });
     }

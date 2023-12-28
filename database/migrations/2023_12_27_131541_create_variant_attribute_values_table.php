@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('variant_attribute_values', function (Blueprint $table) {
-            $table->string('variant_attribute_value_id',33)->nullable();
+            $table->string('variant_attribute_value_id',33)->primary()->unique();
             $table->string('attribute_value_id',33)->nullable();
             
         });
