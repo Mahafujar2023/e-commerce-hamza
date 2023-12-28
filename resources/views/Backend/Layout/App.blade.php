@@ -70,6 +70,8 @@
         <!-- JAVASCRIPT -->
         <script src="{{ asset('Backend/assets/libs/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('Backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+        {{-- this link is off write now --}}
         {{-- <script src="{{ asset('Backend/assets/libs/metismenu/metisMenu.min.js') }}"></script> --}}
         <script src="{{ asset('Backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
         <script src="{{ asset('Backend/assets/libs/node-waves/waves.min.js') }}"></script>
