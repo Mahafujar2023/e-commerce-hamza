@@ -56,6 +56,18 @@
                 </ul>
             </li>
 
+            <li>
+                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <i class="bx bx-layout"></i>
+                    <span key="t-layouts">Role and Permissions</span>
+                </a>
+                <ul class="sub-menu" aria-expanded="true">
+                    <li>
+                        <li><a href="{{route('roleIndex')}}" key="t-light-sidebar">Roles</a></li>
+                        <li><a href="{{route('permissionIndex')}}" key="t-compact-sidebar">Permissions</a></li>
+                </ul>
+            </li>
+
             <li class="menu-title" key="t-apps">Apps</li>
 
 
