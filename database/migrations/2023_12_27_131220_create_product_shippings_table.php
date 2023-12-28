@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_shippings', function (Blueprint $table) {
+            $table->string('shipping_id',33)->primary()->unique();
             $table->string('product_id',33)->nullable();
-            $table->string('shipping_id',33)->nullable();
             $table->double('ship_charge',10,3)->nullable();
             $table->boolean('free')->default(0);
             $table->integer('estimated_days')->default(0);

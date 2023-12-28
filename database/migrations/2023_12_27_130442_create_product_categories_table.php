@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_categories', function (Blueprint $table) {
+            $table->string('product_id',11)->primary()->unique();
             $table->string('category_id',11)->nullable();
-            $table->string('product_id',11)->nullable();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */

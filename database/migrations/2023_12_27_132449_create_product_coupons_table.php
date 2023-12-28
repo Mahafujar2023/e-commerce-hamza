@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_coupons', function (Blueprint $table) {
+            $table->string('product_id',15)->primary()->unique();
             $table->string('coupon_id',11)->nullable();
-            $table->string('product_id',15)->nullable();
         });
     }
 

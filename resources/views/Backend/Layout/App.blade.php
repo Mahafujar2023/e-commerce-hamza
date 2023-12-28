@@ -1,13 +1,14 @@
 <!doctype html>
 <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="utf-8" />
-    <title>@yield('title')</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <link rel="shortcut icon" href="{{ asset('Backend/assets/images/favicon.ico') }}">
+        <meta charset="utf-8" />
+        <title>@yield('title')</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <link rel="shortcut icon" href="{{ asset('Backend/assets/images/favicon.ico') }}">
 
     <!-- Bootstrap Css -->
     <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet"
@@ -66,18 +67,18 @@
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
 
-    <!-- JAVASCRIPT -->
-    <script src="{{ asset('Backend/assets/libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('Backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    {{-- <script src="{{ asset('Backend/assets/libs/metismenu/metisMenu.min.js') }}"></script> --}}
-    <script src="{{ asset('Backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('Backend/assets/libs/node-waves/waves.min.js') }}"></script>
+        <!-- JAVASCRIPT -->
+        <script src="{{ asset('Backend/assets/libs/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('Backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        {{-- <script src="{{ asset('Backend/assets/libs/metismenu/metisMenu.min.js') }}"></script> --}}
+        <script src="{{ asset('Backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
+        <script src="{{ asset('Backend/assets/libs/node-waves/waves.min.js') }}"></script>
 
     <!-- apexcharts -->
     <script src="{{ asset('Backend/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 
-    <!-- dashboard init -->
-    <script src="{{ asset('Backend/assets/js/pages/dashboard.init.js') }}"></script>
+        <!-- dashboard init -->
+        <script src="{{ asset('Backend/assets/js/pages/dashboard.init.js') }}"></script>
 
     <!-- App js -->
     <script src="{{ asset('Backend/assets/js/app.js') }}"></script>
