@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+ 
 class ProductController extends Controller
 {
     /**
@@ -12,7 +12,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.Pages.Ecommerce.products');
     }
 
     /**
@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.Pages.Ecommerce.add_product');
     }
 
     /**
@@ -36,9 +36,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('backend.Pages.Ecommerce.product_details');
     }
-
     /**
      * Show the form for editing the specified resource.
      */

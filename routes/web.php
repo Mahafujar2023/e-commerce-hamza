@@ -4,6 +4,11 @@ use App\Http\Controllers\Backend\Products\CategoryController;
 use App\Http\Controllers\Role\RoleController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CustomerController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +23,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/admin/dashboard',function(){
-    return view('backend.Pages.Dashboard.index');
-})->name('admin.dashboard');
+
+
+Route::group(["prefix"=>"admin"],function(){
+    Route::get('/',function(){
+        return view('backend.Pages.Dashboard.index');
+    });
+    Route::get('/dashboard',function(){
+        return view('backend.Pages.Dashboard.index');
+    });
+    Route::group(["prefix"=>"/ecommerce"],function(){
+        Route::get('/', [ProductController::class, "index"])->name("index");
+        Route::get('/products', [ProductController::class, "index"])->name("index");
+        Route::get('/add-product', [ProductController::class, "create"])->name("add-product");
+        Route::get('/product-details', [ProductController::class, "show"])->name("show");
+        Route::get('/orders', [OrderController::class, "index"])->name("index");
+        Route::get('/customers', [CustomerController::class, "index"])->name("index");
+        Route::get('/cart', [ProductController::class, "index"])->name("index");
+        Route::get('/checkout', [ProductController::class, "index"])->name("index");
+        Route::get('/shops', [ProductController::class, "index"])->name("index");
+    });
+});
 
 Route::prefix('admin/product')->group(function(){
     /*Category Route*/
