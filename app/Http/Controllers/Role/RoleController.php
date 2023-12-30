@@ -24,10 +24,13 @@ class RoleController extends Controller
             'guard_name' => 'web',
      ]);
 
-        return response()->json([
-            'data'=> json_encode($permission) ,
-            'message'=> "Permission created successfully"
-        ]);
+     if ($permission) {
+        return redirect()->back()->with('message', 'Permission created successfully');
+     } else
+     {
+        return back()->with('error', 'Somthing went wront');
+     }
+       
     }
 
     public function assignPermissionToRole(Request $request)

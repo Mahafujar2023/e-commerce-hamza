@@ -36,7 +36,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('backend.Pages.Ecommerce.product_details');
     }
     /**
      * Show the form for editing the specified resource.

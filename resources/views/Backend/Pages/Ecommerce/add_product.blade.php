@@ -1,5 +1,5 @@
 @extends('backend.layout.app')
-@section('title','Products | Admin Panel')
+@section('title','Add Product | Admin Panel')
 
 @section('content')
 
