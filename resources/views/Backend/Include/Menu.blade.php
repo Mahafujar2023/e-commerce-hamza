@@ -104,14 +104,14 @@
                     <span key="t-ecommerce">Ecommerce</span>
                 </a>
                 <ul class="sub-menu" aria-expanded="false">
-                    <li><a href="ecommerce-products.html" key="t-products">Products</a></li>
-                    <li><a href="ecommerce-product-detail.html" key="t-product-detail">Product Detail</a></li>
-                    <li><a href="ecommerce-orders.html" key="t-orders">Orders</a></li>
-                    <li><a href="ecommerce-customers.html" key="t-customers">Customers</a></li>
-                    <li><a href="ecommerce-cart.html" key="t-cart">Cart</a></li>
-                    <li><a href="ecommerce-checkout.html" key="t-checkout">Checkout</a></li>
-                    <li><a href="ecommerce-shops.html" key="t-shops">Shops</a></li>
-                    <li><a href="ecommerce-add-product.html" key="t-add-product">Add Product</a></li>
+                    <li><a href="{{url('/admin/ecommerce/products')}}" key="t-products">Products</a></li>
+                    <li><a href="{{url('/admin/ecommerce/product-details')}}" key="t-product-detail">Product Detail</a></li>
+                    <li><a href="{{url('/admin/ecommerce/orders')}}" key="t-orders">Orders</a></li>
+                    <li><a href="{{url('/admin/ecommerce/customers')}}" key="t-customers">Customers</a></li>
+                    <li><a href="{{url('/admin/ecommerce/cart')}}" key="t-cart">Cart</a></li>
+                    <li><a href="{{url('/admin/ecommerce/checkout')}}" key="t-checkout">Checkout</a></li>
+                    <li><a href="{{url('/admin/ecommerce/shops')}}" key="t-shops">Shops</a></li>
+                    <li><a href="{{url('/admin/ecommerce/add-product')}}" key="t-add-product">Add Product</a></li>
                 </ul>
             </li>
 
