@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\Backend\Products\CategoryController;
 use App\Http\Controllers\Role\RoleController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\CustomerController;
 
 
 /*
@@ -50,6 +51,7 @@ Route::group(["prefix"=>"admin"],function(){
         });
     });
 });
+Route::get("admin/category/index",[CategoryController::class,"index"]);
 
 // Role and permission routes
 Route::post('/create-role', [RoleController::class,'createRole'])->name('createRole');
