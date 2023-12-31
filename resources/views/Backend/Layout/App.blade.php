@@ -2,7 +2,7 @@
 <html lang="en">
 
     <head>
-
+        
         <meta charset="utf-8" />
         <title>@yield('title')</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -11,6 +11,7 @@
         <meta content="Themesbrand" name="author" />
         <link rel="shortcut icon" href="{{ asset('backend-assets/images/favicon.ico') }}">
         @stack('page-wise-css')
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <!-- Bootstrap Css -->
         <link href="{{ asset('backend-assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
@@ -20,12 +21,12 @@
         @yield('style')
     </head>
 
-<body data-sidebar="dark">
+    <body data-sidebar="dark">
 
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
 
-    <!-- Begin page -->
-    <div id="layout-wrapper">
+        <!-- Begin page -->
+        <div id="layout-wrapper">
 
             <!-- ==========Header Start ========== -->
             @include('backend.include.header')
@@ -33,11 +34,16 @@
 
 
             <!-- ========== Left Sidebar Start ========== -->
-            @include('backend.Include.Menu')
+            @include('backend.include.menu')
             <!-- Left Sidebar End -->
 
+            
 
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
             <div class="main-content">
+
                 <div class="page-content">
                     <div class="container-fluid">
                         @yield('content')
@@ -45,30 +51,22 @@
                     <!-- container-fluid -->
                 </div>
                 <!-- End Page-content -->
-            </div>
+
                 
 
                @include('backend.Include.footer')
-
             </div>
-            <!-- End Page-content -->
+            <!-- end main content-->
 
-
-
-            @include('Backend.Include.Footer')
         </div>
-        <!-- end main content-->
+        <!-- END layout-wrapper -->
 
         <!-- Right Sidebar -->
         {{-- @include('backend.Include.Right_sidebar') --}}
         <!-- /Right-bar -->
 
-    <!-- Right Sidebar -->
-    @include('Backend.Include.Right_sidebar')
-    <!-- /Right-bar -->
-
-    <!-- Right bar overlay-->
-    <div class="rightbar-overlay"></div>
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
 
         <!-- JAVASCRIPT -->
         <script src="{{ asset('backend-assets/libs/jquery/jquery.min.js') }}"></script>
@@ -78,13 +76,13 @@
         <script src="{{ asset('backend-assets/libs/node-waves/waves.min.js') }}"></script>
 
         <!-- apexcharts -->
-        <script src="{{ asset('backend-assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+        {{-- <script src="{{ asset('backend-assets/libs/apexcharts/apexcharts.min.js') }}"></script> --}}
 
         <!-- dashboard init -->
-        <script src="{{ asset('backend-assets/js/pages/dashboard.init.js') }}"></script>
+        {{-- <script src="{{ asset('backend-assets/js/pages/dashboard.init.js') }}"></script> --}}
 
         @stack('page-wise-script')
-
+        @include('backend.include.toast')
         <!-- App js -->
         <script>
             var bootstrapAssetUrl = "{{ asset('backend-assets/css/bootstrap.min.css') }}";
@@ -96,7 +94,8 @@
         </script>
         <script src="{{ asset('backend-assets/js/app.js') }}"></script>
 
-    @yield('script')
-</body>
+        @stack('script')
+       
+    </body>
 
 </html>

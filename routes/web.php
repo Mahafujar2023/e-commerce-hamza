@@ -42,11 +42,11 @@ Route::group(["prefix"=>"admin"],function(){
         Route::group(["prefix"=>"/product"],function(){
             Route::get('/product', [ProductController::class, "index"])->name("index");
             Route::get('/create', [ProductController::class, "create"])->name("create");
-            Route::get('/show', [ProductController::class, "show"])->name("show");
+            Route::get('/create', [ProductController::class, "create"])->name("create");
             Route::get('/edit', [ProductController::class, "edit"])->name("edit");
             Route::post('/store', [ProductController::class, "store"])->name("store");
             Route::post('/update', [ProductController::class, "update"])->name("index");
-            Route::post('/delete', [ProductController::class, "distroy"])->name("distroy");
+            Route::post('/delete', [ProductController::class, "distroy"])->name("index");
         });
     });
 });
