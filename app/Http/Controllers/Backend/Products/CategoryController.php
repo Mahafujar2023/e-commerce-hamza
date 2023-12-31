@@ -26,6 +26,7 @@ class CategoryController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->with('errors', $validator->errors()->all())->withInput();
         }
+        
         //Handle Icon upload
          if ($request->hasFile('category_icon')) {
             $image = $request->file('category_icon');
@@ -35,12 +36,14 @@ class CategoryController extends Controller
         else{
             $imageIconName=null;
         }
-
          // Handle Image file upload
          if ($request->hasFile('category_image')) {
             $image = $request->file('category_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('backend-assets/images/category'), $imageName);
+            // $image->storeAs('images/category', $imageName);
+            // return $imageName;
+            // die;
         }else{
             $imageName =NULL;
         }
@@ -55,8 +58,6 @@ class CategoryController extends Controller
         $object->status=$request->status;
         // Save the category to the database
         $object->save();
-
-        // Return a response 
         return response()->json(['success' => 'Category created successfully']);
     }
     public function edit($id){

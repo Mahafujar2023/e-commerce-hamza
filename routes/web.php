@@ -24,6 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::group(["prefix"=>"admin"],function(){
     Route::get('/',function(){
         return view('backend.Pages.Dashboard.index');
@@ -50,8 +51,16 @@ Route::group(["prefix"=>"admin"],function(){
             Route::post('/delete', [ProductController::class, "distroy"])->name("index");
         });
     });
+    Route::prefix('/product')->group(function(){
+        /*Category Route*/
+        Route::get('/category',[CategoryController::class,'index'])->name('admin.category.index');
+        Route::post('/category/store',[CategoryController::class,'store'])->name('admin.category.store');
+        Route::post('/category/delete',[CategoryController::class,'delete'])->name('admin.category.delete');
+        Route::get('/category/edit/{id}',[CategoryController::class,'edit'])->name('admin.category.edit');
+        // Route::post('/category/update',[CategoryController::class,'update'])->name('admin.category.update');
+    });
 });
-Route::get("admin/category/index",[CategoryController::class,"index"]);
+
 
 // Role and permission routes
 Route::post('/create-role', [RoleController::class,'createRole'])->name('createRole');

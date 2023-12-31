@@ -189,8 +189,11 @@
             url: url,
             data: formData,
             success: function (response) {
+<<<<<<< HEAD
                 console.log(response);
                 return false;
+=======
+>>>>>>> 5106b30234320e5b6ce7571314226bb4b72733ea
                 $('#addModal').modal('hide');
                 $('#addModal form')[0].reset();
                 if (response.success) {
