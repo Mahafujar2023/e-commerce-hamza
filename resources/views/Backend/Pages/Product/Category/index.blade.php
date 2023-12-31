@@ -73,27 +73,11 @@
               <td>
                 <!-- Add your action buttons here -->
                 <a class="btn btn-primary btn-sm mr-3" href="{{route('admin.category.edit', $item->id)}}"><i class="fa fa-edit"></i></a>
-                    <button data-toggle="modal" data-target="#deleteModal{{$item->id}}" class="btn btn-danger btn-sm mr-3"><i class="fa fa-trash"></i></button>
+                    <button  type="button"  data-id="{{ $item->id }}"  class="btn btn-danger delete-btn btn-sm mr-3"><i class="fa fa-trash"></i></button>
               </td>
             </tr>
               <!-- Static Backdrop Modal -->
-            <div class="modal fade" id="deleteModal{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                          <p>I will not close if you click outside me. Don't even try to press escape key.</p>
-                      </div>
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Understood</button>
-                      </div>
-                  </div>
-              </div>
-            </div>
+            
             @endforeach
           </tbody>
         </table>
@@ -159,6 +143,29 @@
     </div>
   </div>
 
+
+  <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <form action="{{route('admin.category.delete')}}" method="post" enctype="multipart/form-data">
+              @csrf
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Delete Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4 class="tx-danger  tx-semibold mg-b-20 mt-2">Are you sure! you want to delete this?</h4>
+                <input type="hidden" name="id" value="">
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="sumit" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
 @endsection
 
 @push('page-wise-script')
@@ -203,6 +210,45 @@
             }
         });
     });
+
+      /** Handle Delete button click**/
+      $('#datatable tbody').on('click', '.delete-btn', function () {
+        var id = $(this).data('id');
+        $('#deleteModal').modal('show');
+        var value_input = $("input[name*='id']").val(id);
+      });
+        /** Handle form submission for delete **/
+      $('#deleteModal form').submit(function(e){
+        e.preventDefault();
+
+        var form = $(this);
+        var url = form.attr('action');
+        var formData = form.serialize();
+        /** Use Ajax to send the delete request **/
+        $.ajax({
+          type:'POST',
+          'url':url,
+          data: formData,
+          success: function (response) {
+            $('#deleteModal').modal('hide');
+            if (response.success) {
+              toastr.success(response.success);
+              //table.ajax.reload();
+              $('#datatable').DataTable().ajax.reload( null , false);
+            } else {
+              /** Handle  errors **/
+              toastr.error("Error!!!");
+            }
+          },
+
+          error: function (xhr, status, error) {
+            /** Handle  errors **/
+            toastr.error(xhr.responseText);
+          }
+        });
+      });
+
+
   });
 </script>
 @endpush

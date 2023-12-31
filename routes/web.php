@@ -33,15 +33,15 @@ Route::group(["prefix"=>"admin"],function(){
         return view('backend.Pages.Dashboard.index');
     });
     Route::group(["prefix"=>"/ecommerce"],function(){
-        Route::get('/', [ProductController::class, "index"])->name("index");
-        Route::get('/products', [ProductController::class, "index"])->name("index");
-        Route::get('/add-product', [ProductController::class, "create"])->name("add-product");
-        Route::get('/product-details', [ProductController::class, "show"])->name("show");
-        Route::get('/orders', [OrderController::class, "index"])->name("index");
-        Route::get('/customers', [CustomerController::class, "index"])->name("index");
-        Route::get('/cart', [ProductController::class, "index"])->name("index");
-        Route::get('/checkout', [ProductController::class, "index"])->name("index");
-        Route::get('/shops', [ProductController::class, "index"])->name("index");
+        // Route::get('/', [ProductController::class, "index"])->name("index");
+        // Route::get('/products', [ProductController::class, "index"])->name("index");
+        // Route::get('/add-product', [ProductController::class, "create"])->name("add-product");
+        // Route::get('/product-details', [ProductController::class, "show"])->name("show");
+        // Route::get('/orders', [OrderController::class, "index"])->name("index");
+        // Route::get('/customers', [CustomerController::class, "index"])->name("index");
+        // Route::get('/cart', [ProductController::class, "index"])->name("index");
+        // Route::get('/checkout', [ProductController::class, "index"])->name("index");
+        // Route::get('/shops', [ProductController::class, "index"])->name("index");
     });
 });
 
