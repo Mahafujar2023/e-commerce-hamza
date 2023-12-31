@@ -14,6 +14,15 @@
                     <i class="bx bx-home-circle"></i>
                     <span key="t-chat">Dashboard</span>
                 </a>
+<<<<<<< HEAD
+=======
+                <ul class="sub-menu" aria-expanded="false">
+                    <li><a href="{{url('/admin')}}" key="t-default">Default</a></li>
+                    <li><a href="dashboard-saas.html" key="t-saas">Saas</a></li>
+                    <li><a href="dashboard-crypto.html" key="t-crypto">Crypto</a></li>
+                    <li><a href="dashboard-blog.html" key="t-blog">Blog</a></li>
+                </ul>
+>>>>>>> 0237bebc135b2ab7eed4d45f75903966efacf06a
             </li>
 
             <li>
@@ -71,14 +80,15 @@
                     <span key="t-ecommerce">Ecommerce</span>
                 </a>
                 <ul class="sub-menu" aria-expanded="false">
-                    <li><a href="{{url('/admin/ecommerce/products')}}" key="t-products">Products</a></li>
-                    <li><a href="{{url('/admin/ecommerce/product-details')}}" key="t-product-detail">Product Detail</a></li>
+                    <li><a href="{{url('/admin/ecommerce/product')}}" key="t-products">Products</a></li>
+                    <li><a href="{{url('/admin/ecommerce/product/show')}}" key="t-show">Product Detail</a></li>
+                    <li><a href="{{url('/admin/ecommerce/product/create')}}" key="t-create">Add Product</a></li>
+                
                     <li><a href="{{url('/admin/ecommerce/orders')}}" key="t-orders">Orders</a></li>
                     <li><a href="{{url('/admin/ecommerce/customers')}}" key="t-customers">Customers</a></li>
                     <li><a href="{{url('/admin/ecommerce/cart')}}" key="t-cart">Cart</a></li>
                     <li><a href="{{url('/admin/ecommerce/checkout')}}" key="t-checkout">Checkout</a></li>
                     <li><a href="{{url('/admin/ecommerce/shops')}}" key="t-shops">Shops</a></li>
-                    <li><a href="{{url('/admin/ecommerce/add-product')}}" key="t-add-product">Add Product</a></li>
                 </ul>
             </li>
 

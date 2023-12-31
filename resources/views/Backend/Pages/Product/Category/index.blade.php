@@ -189,8 +189,6 @@
             url: url,
             data: formData,
             success: function (response) {
-                console.log(response);
-                return false;
                 $('#addModal').modal('hide');
                 $('#addModal form')[0].reset();
                 if (response.success) {

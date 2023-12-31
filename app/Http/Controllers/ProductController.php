@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
  
+use App\Models\ProductCategory;
+use App\Models\Category;
+
 class ProductController extends Controller
 {
     /**
@@ -20,7 +23,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.Pages.Ecommerce.add_product');
+        $categories = Category::select("id","category_name")->where('status','=',1)->get();
+        $data = [
+            "categories" => $categories
+        ];
+        return view('backend.Pages.Ecommerce.add_product')->with($data);
     }
 
     /**
@@ -28,7 +35,28 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            "product_name"=>"required",
+            "sku"=>"required",
+            "regular_price"=>"required",
+            "discount_price"=>"required",
+            "quantity"=>"required",
+            "short_description"=>"required",
+            "product_description"=>"required",
+            "product_weight"=>"required",
+            "product_note"=>"required",
+        ]);
+        // echo "<br>";
+        // echo var_dump($validate);
+        // die();
+
+        $product = new Product($validate);
+        return $product->id;
+        // $request->validate([
+        //     "images"=>"required",
+        //     "category"=>"required",
+        // ]);
+        //return $product->id;
     }
 
     /**

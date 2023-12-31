@@ -36,7 +36,6 @@ class CategoryController extends Controller
         else{
             $imageIconName=null;
         }
-
          // Handle Image file upload
          if ($request->hasFile('category_image')) {
             $image = $request->file('category_image');

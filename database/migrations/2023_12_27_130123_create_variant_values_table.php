@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('variant_values', function (Blueprint $table) {
-            $table->id(15);
+            $table->id();
             $table->string('variant_id', 11)->nullable();
             $table->double('price',11,2)->nullable();
             $table->bigInteger('quantity')->nullable();
