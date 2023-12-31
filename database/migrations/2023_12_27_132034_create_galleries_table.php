@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('galleries', function (Blueprint $table) {
-            $table->id(20);
-            $table->string('product_id',33)->nullable();
+            $table->id();
+            $table->string('product_id')->length(20);
             $table->text('image_path')->nullable();
             $table->boolean('thumbnail')->nullable();
             $table->smallInteger('display_order')->nullable();
