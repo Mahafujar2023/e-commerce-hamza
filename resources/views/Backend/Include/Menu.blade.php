@@ -14,15 +14,12 @@
                     <i class="bx bx-home-circle"></i>
                     <span key="t-chat">Dashboard</span>
                 </a>
-<<<<<<< HEAD
-=======
                 <ul class="sub-menu" aria-expanded="false">
                     <li><a href="{{url('/admin')}}" key="t-default">Default</a></li>
                     <li><a href="dashboard-saas.html" key="t-saas">Saas</a></li>
                     <li><a href="dashboard-crypto.html" key="t-crypto">Crypto</a></li>
                     <li><a href="dashboard-blog.html" key="t-blog">Blog</a></li>
                 </ul>
->>>>>>> 0237bebc135b2ab7eed4d45f75903966efacf06a
             </li>
 
             <li>
