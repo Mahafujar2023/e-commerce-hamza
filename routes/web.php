@@ -1,10 +1,14 @@
 <?php
 
+use App\Http\Controllers\Backend\Products\CategoryController;
 use App\Http\Controllers\Role\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\CheckPermission;
 
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\CustomerController;
 
 
 /*
@@ -21,8 +25,42 @@ use App\Http\Middleware\CheckPermission;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/admin/dashboard',function(){
-    return view('backend.Pages.Dashboard.index');
+
+
+Route::group(["prefix"=>"admin"],function(){
+    Route::get('/',function(){
+        return view('backend.Pages.Dashboard.index');
+    });
+    Route::get('/dashboard',function(){
+        return view('backend.Pages.Dashboard.index');
+    });
+    Route::group(["prefix"=>"/ecommerce"],function(){
+        Route::get('/', [ProductController::class, "index"])->name("index");
+        Route::get('/product-details', [ProductController::class, "show"])->name("show");
+        Route::get('/orders', [OrderController::class, "index"])->name("index");
+        Route::get('/customers', [CustomerController::class, "index"])->name("index");
+        Route::get('/cart', [ProductController::class, "index"])->name("index");
+        Route::get('/checkout', [ProductController::class, "index"])->name("index");
+        Route::get('/shops', [ProductController::class, "index"])->name("index");
+
+        Route::group(["prefix"=>"/product"],function(){
+            Route::get('/product', [ProductController::class, "index"])->name("index");
+            Route::get('/create', [ProductController::class, "create"])->name("create");
+            Route::get('/create', [ProductController::class, "create"])->name("create");
+            Route::get('/edit', [ProductController::class, "edit"])->name("edit");
+            Route::post('/store', [ProductController::class, "store"])->name("store");
+            Route::post('/update', [ProductController::class, "update"])->name("index");
+            Route::post('/delete', [ProductController::class, "distroy"])->name("index");
+        });
+    });
+    Route::prefix('/product')->group(function(){
+        /*Category Route*/
+        Route::get('/category',[CategoryController::class,'index'])->name('admin.category.index');
+        Route::post('/category/store',[CategoryController::class,'store'])->name('admin.category.store');
+        Route::post('/category/delete',[CategoryController::class,'delete'])->name('admin.category.delete');
+        Route::get('/category/edit/{id}',[CategoryController::class,'edit'])->name('admin.category.edit');
+        // Route::post('/category/update',[CategoryController::class,'update'])->name('admin.category.update');
+    });
 });
 
 // Route::get('/', function () {
