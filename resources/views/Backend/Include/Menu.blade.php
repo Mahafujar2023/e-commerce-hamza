@@ -65,6 +65,7 @@
                     <li>
                         <li><a href="{{route('roleIndex')}}" key="t-light-sidebar">Roles</a></li>
                         <li><a href="{{route('permissionIndex')}}" key="t-compact-sidebar">Permissions</a></li>
+
                 </ul>
             </li>
 

@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\Role\RoleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckRole;
+use App\Http\Middleware\CheckPermission;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +25,52 @@ Route::get('/admin/dashboard',function(){
     return view('backend.Pages.Dashboard.index');
 });
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+
+require __DIR__.'/auth.php';
+
 // Role and permission routes
 Route::post('/create-role', [RoleController::class,'createRole'])->name('createRole');
 Route::post('/create-permission', [RoleController::class,'createPermission'])->name('createPermission');
+Route::put('/update-permission/{id}', [RoleController::class, 'permissionUpdate'])->name('updatePermission');
+Route::get('/delete-permission/{id}', [RoleController::class, 'deletePermission'])->name('permissions.delete');
+
 Route::post('/assign-permission-to-role', [RoleController::class,'assignPermissionToRole'])->name('assignPermissionToRole');
 Route::post('/assign-user-to-role', [RoleController::class,'assignUserToRole'])->name('assignUserToRole');
 Route::get('/role-index', [RoleController::class,'roleIndex'])->name('roleIndex');
-Route::get('/permission-index', [RoleController::class,'permissionIndex'])->name('permissionIndex');
+Route::get('/permission-index', [RoleController::class,'permissionIndex'])->name('permissionIndex'); 
+Route::get('/role-has-permissions/{id}', [RoleController::class,'hasPermissionsPage'])->name('hasPermissionsPage');
+
+Route::get('/role-has-permissions/{id}', [RoleController::class,'saveRolePermissions'])->name('saveRolePermissions');
+
+//routes as middleware
+
+Route::middleware(['auth', 'role:super_admin'])->group(function () {
+   
+});
+
+Route::middleware(['auth', 'role:vendor'])->group(function () {
+   
+});
+
+Route::middleware(['auth', 'role:user'])->group(function () {
+   
+});
+//role and base routes
+// Route::get('/admin/dashboard', [YourController::class, 'dashboard'])
+//     ->middleware(['auth', 'role:admin']);
+
+// Route::get('/dashboard', [YourController::class, 'dashboard'])
+//     ->middleware(['auth', 'permission:view_dashboard']);

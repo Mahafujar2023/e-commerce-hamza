@@ -23,7 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-    
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -43,4 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->exists();
+    }
+
+    public function hasPermissionTo($permission)
+    {
+        return $this->permissions()->where('name', $permission)->exists();
+    }
 }

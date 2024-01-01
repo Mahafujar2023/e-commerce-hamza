@@ -51,7 +51,9 @@
               <td>{{$role->id}}</td>
               <td>{{$role->name}}</td>
               <td>{{$role->guard_name }}</td>
-              <td>action</td>
+              <td>
+                <a class="btn btn-sm btn-warning" href="{{route('hasPermissionsPage',$role->id)}}">Assign/Change permissions</a>
+              </td>
             </tr>
             @endforeach
           </tbody>

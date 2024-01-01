@@ -1,4 +1,4 @@
-@extends('backend.Layout.App')
+@extends('backend.Layout.app')
 @section('title','Dashboard | Admin Panel')
 
 @section('content')
@@ -31,3 +31,30 @@
   </div>
 </div>
 <!-- end page title -->
+
+
+{{-- vaidation sample --}}
+
+try {
+  $request->validate([
+      'name' => [
+          'required',
+          'string',
+          'max:255',
+          Rule::unique('permissions')->where(function ($query) {
+              return $query->where('guard_name', 'web');
+          }),
+      ],
+  ]);
+
+  $permission = Permission::create([
+      'name' => $request->name,
+      'guard_name' => 'web',
+  ]);
+
+  return back()->with('message', 'Permission created successfully');
+} catch (ValidationException $e) {
+  return back()->withErrors($e->validator->errors()->all())->withInput();
+} catch (\Exception $e) {
+  return back()->with('error', 'Something went wrong');
+}

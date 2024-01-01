@@ -17,6 +17,13 @@
     }
     toastr.error("{{ session('error') }}");
     @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error('{{ $error }}');
+        @endforeach
+   @endif
+
     
     @if(Session::has('info'))
     toastr.options =
