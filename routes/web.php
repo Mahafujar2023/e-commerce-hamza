@@ -4,7 +4,7 @@ use App\Http\Controllers\Backend\Products\CategoryController;
 use App\Http\Controllers\Role\RoleController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\Products\ProductController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\CustomerController;
 
@@ -27,10 +27,10 @@ Route::get('/', function () {
 
 Route::group(["prefix"=>"admin"],function(){
     Route::get('/',function(){
-        return view('backend.Pages.Dashboard.index');
+        return view('backend.pages.dashboard.index');
     });
     Route::get('/dashboard',function(){
-        return view('backend.Pages.Dashboard.index');
+        return view('backend.pages.dashboard.index');
     });
     Route::group(["prefix"=>"/ecommerce"],function(){
         Route::get('/', [ProductController::class, "index"])->name("index");
@@ -42,7 +42,7 @@ Route::group(["prefix"=>"admin"],function(){
         Route::get('/shops', [ProductController::class, "index"])->name("index");
 
         Route::group(["prefix"=>"/product"],function(){
-            Route::get('/product', [ProductController::class, "index"])->name("index");
+            Route::get('/', [ProductController::class, "index"])->name("index");
             Route::get('/create', [ProductController::class, "create"])->name("create");
             Route::get('/create', [ProductController::class, "create"])->name("create");
             Route::get('/edit', [ProductController::class, "edit"])->name("edit");

@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function index(){
         $data=Category::latest()->get();
-        return view('Backend.Pages.Product.Category.index',compact('data'));
+        return view('backend.pages.product.category.index',compact('data'));
     }
     public function store(Request $request)
     {
@@ -62,7 +62,7 @@ class CategoryController extends Controller
     }
     public function edit($id){
         $data=Category::find($id);
-        return view('Backend.Pages.Product.Category.Update',compact('data'));
+        return view('backend.pages.product.category.update',compact('data'));
     }
     public function update(Request $request){
         return $request->all();

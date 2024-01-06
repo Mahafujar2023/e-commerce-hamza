@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend\Products;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\ProductAttribute;
 use Illuminate\Http\Request;

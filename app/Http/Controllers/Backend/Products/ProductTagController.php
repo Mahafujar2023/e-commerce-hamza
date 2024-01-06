@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Models\ProductTag;
 use Illuminate\Http\Request;
+
+use App\Http\Controllers\Controller;
 
 class ProductTagController extends Controller
 {

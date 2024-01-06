@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Models\Gallary;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 
-class GallaryController extends Controller
+use App\Http\Controllers\Controller;
+
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.

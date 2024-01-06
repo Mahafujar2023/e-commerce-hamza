@@ -1,4 +1,4 @@
-@extends('backend.layout.app')
+@extends('Backend.layout.app')
 @section('title','Add Product | Admin Panel')
 
 @section('content')
@@ -30,7 +30,7 @@
                 <h4 class="card-title">Basic Information</h4>
                 <p class="card-title-desc">Fill all information below</p>
 
-                <form action="{{url('admin/ecommerce/product/store')}}" method="post">
+                <form action="{{url('admin/ecommerce/product/store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-sm-6">
@@ -57,15 +57,15 @@
                             
                             <div class="mb-3">
                                 <label for="image">Gallary Image</label>
-                                <input id="image" name="images" multiple type="file" class="form-control" placeholder="Quantity">
+                                <input id="image" name="images[]" multiple type="file" class="form-control" placeholder="Images">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label class="control-label">Category</label>
-                                <select class="form-control select2">
-                                    <option name="category">Select</option>
+                                <select name="category" class="form-control select2">
+                                    <option >Select</option>
                                     @foreach ($categories as $item)
                                         <option value="{{$item->id}}">{{$item->category_name}}</option>
                                     @endforeach
@@ -95,7 +95,14 @@
                                 <label for="productdesc">Product Description</label>
                                 <textarea name="product_description" class="form-control" id="productdesc" rows="5" placeholder="Product Description"></textarea>
                             </div>
-                            
+                            <div class="mb-3">
+                                <label class="control-label">Category</label>
+                                <select name="category" class="form-control select2">
+                                    <option value="0">InActive</option>
+                                    <option value="1">Active</option>
+                                    <option value="2">Desiabled</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
