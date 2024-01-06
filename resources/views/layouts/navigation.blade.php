@@ -46,7 +46,7 @@
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
-                            </x-dropdown-link>
+                            </x-dropdown-link> 
                         </form>
                     </x-slot>
                 </x-dropdown>
