@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function index(){
         $data=Category::latest()->get();
-        return view('backend.pages.product.category.index',compact('data'));
+        return view('backend.pages.category.index',compact('data'));
     }
     public function store(Request $request)
     {
@@ -31,7 +31,7 @@ class CategoryController extends Controller
          if ($request->hasFile('category_icon')) {
             $image = $request->file('category_icon');
             $imageIconName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend-assets/images/category/icon'), $imageIconName);
+            $image->storeAs(public_path('backend-assets/images/category/icon'), $imageIconName);
         }
         else{
             $imageIconName=null;
@@ -40,7 +40,7 @@ class CategoryController extends Controller
          if ($request->hasFile('category_image')) {
             $image = $request->file('category_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend-assets/images/category'), $imageName);
+            $image->storeAs(public_path('backend-assets/images/category'), $imageName);
             // $image->storeAs('images/category', $imageName);
             // return $imageName;
             // die;
@@ -62,7 +62,7 @@ class CategoryController extends Controller
     }
     public function edit($id){
         $data=Category::find($id);
-        return view('backend.pages.product.category.update',compact('data'));
+        return view('backend.pages.category.update',compact('data'));
     }
     public function update(Request $request){
         return $request->all();

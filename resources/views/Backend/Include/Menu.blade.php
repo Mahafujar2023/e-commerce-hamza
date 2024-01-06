@@ -40,7 +40,23 @@
                         <li><a href="{{route('permissionIndex')}}" key="t-compact-sidebar">Permissions</a></li>
                 </ul>
             </li>
-
+            <li>
+                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <i class="bx bx-store"></i>
+                    <span key="t-ecommerce">Ecommerce</span>
+                </a>
+                <ul class="sub-menu" aria-expanded="false">
+                    <li><a href="{{url('/admin/product')}}" key="t-products">Products</a></li>
+                    <li><a href="{{url('/admin/product/show')}}" key="t-show">Product Detail</a></li>
+                    <li><a href="{{url('/admin/product/create')}}" key="t-create">Add Product</a></li>
+                
+                    <li><a href="{{url('/admin/ecommerce/orders')}}" key="t-orders">Orders</a></li>
+                    <li><a href="{{url('/admin/ecommerce/customers')}}" key="t-customers">Customers</a></li>
+                    <li><a href="{{url('/admin/ecommerce/cart')}}" key="t-cart">Cart</a></li>
+                    <li><a href="{{url('/admin/ecommerce/checkout')}}" key="t-checkout">Checkout</a></li>
+                    <li><a href="{{url('/admin/ecommerce/shops')}}" key="t-shops">Shops</a></li>
+                </ul>
+            </li>
             <li class="menu-title" key="t-apps">Apps</li>
 
 
@@ -71,23 +87,7 @@
                 </a>
             </li>
 
-            <li>
-                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                    <i class="bx bx-store"></i>
-                    <span key="t-ecommerce">Ecommerce</span>
-                </a>
-                <ul class="sub-menu" aria-expanded="false">
-                    <li><a href="{{url('/admin/ecommerce/product')}}" key="t-products">Products</a></li>
-                    <li><a href="{{url('/admin/ecommerce/product/show')}}" key="t-show">Product Detail</a></li>
-                    <li><a href="{{url('/admin/ecommerce/product/create')}}" key="t-create">Add Product</a></li>
-                
-                    <li><a href="{{url('/admin/ecommerce/orders')}}" key="t-orders">Orders</a></li>
-                    <li><a href="{{url('/admin/ecommerce/customers')}}" key="t-customers">Customers</a></li>
-                    <li><a href="{{url('/admin/ecommerce/cart')}}" key="t-cart">Cart</a></li>
-                    <li><a href="{{url('/admin/ecommerce/checkout')}}" key="t-checkout">Checkout</a></li>
-                    <li><a href="{{url('/admin/ecommerce/shops')}}" key="t-shops">Shops</a></li>
-                </ul>
-            </li>
+            
 
             <li>
                 <a href="javascript: void(0);" class="has-arrow waves-effect">
