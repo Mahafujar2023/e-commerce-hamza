@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->string('product_id')->length(20);
+            $table->string('product_id')->length(20)->nullable();
             $table->text('image_path')->nullable();
             $table->boolean('thumbnail')->nullable();
             $table->smallInteger('display_order')->nullable();

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\CheckPermission;
 
-use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\Products\ProductController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\CustomerController;
 
@@ -27,12 +27,21 @@ Route::get('/', function () {
 });
 
 
+<<<<<<< HEAD
 Route::group(["prefix" => "admin"], function () {
     Route::get('/', function () {
         return view('backend.Pages.Dashboard.index');
     });
     Route::get('/dashboard', function () {
         return view('backend.Pages.Dashboard.index');
+=======
+Route::group(["prefix"=>"admin"],function(){
+    Route::get('/',function(){
+        return view('backend.pages.dashboard.index');
+    });
+    Route::get('/dashboard',function(){
+        return view('backend.pages.dashboard.index');
+>>>>>>> 4f35d1086fa1028806122cef1378db3d3480efa9
     });
     Route::group(["prefix" => "/ecommerce"], function () {
         Route::get('/', [ProductController::class, "index"])->name("index");
@@ -42,8 +51,13 @@ Route::group(["prefix" => "admin"], function () {
         Route::get('/checkout', [ProductController::class, "index"])->name("index");
         Route::get('/shops', [ProductController::class, "index"])->name("index");
 
+<<<<<<< HEAD
         Route::group(["prefix" => "/product"], function () {
             Route::get('/product', [ProductController::class, "index"])->name("index");
+=======
+        Route::group(["prefix"=>"/product"],function(){
+            Route::get('/', [ProductController::class, "index"])->name("index");
+>>>>>>> 4f35d1086fa1028806122cef1378db3d3480efa9
             Route::get('/create', [ProductController::class, "create"])->name("create");
             Route::get('/create', [ProductController::class, "create"])->name("create");
             Route::get('/edit', [ProductController::class, "edit"])->name("edit");
