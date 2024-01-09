@@ -35,59 +35,61 @@
 <div class="row">
     <div class="col-md-6 m-auto">
     <div class="card">
-        <div class="card-header bg-info text-white"> <h4>Update Category</h4>  </div>
-        <form action="{{route('admin.category.update',$data->id)}}" method="post" enctype="multipart/form-data">@csrf
+        <div class="card-header bg-info text-white"> <h4>Add New Category</h4>  </div>
+        <form action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data">@csrf
             <div class="card-body">
                 <div class="col-xl-12">
                     <div class="form-layout form-layout-4">
 
+                        <div class="row mb-4 mt-4">
+                            <label class="col-sm-3 form-control-label">Category List: <span class="tx-danger">*</span></label>
+                            <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                                <select type="text" class="form-select"  name="parent_id">
+                                    <option value="">---Select---</option>
+                                    @forelse ($data as $item)
+                                        <option value="{{ $item->id }}">{{ $item->category_name }}</option>
+                                    @empty
+                                        <option value="" disabled>No categories available</option>
+                                    @endforelse
+                                </select>
+                            </div>
+                        </div>
                         <div class="row mb-4">
                             <label class="col-sm-3 form-control-label">Cateogry Name: <span class="tx-danger">*</span></label>
                             <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                                <input type="text" class="form-control" name="category_name" placeholder="Enter Category Name" value="{{$data->category_name}}" required>
+                                <input type="text" class="form-control" name="category_name" placeholder="Enter Category Name" required>
                             </div>
                         </div><!-- row -->
                         <div class="row mb-4 mt-4">
                             <label class="col-sm-3 form-control-label">Description: <span class="tx-danger">*</span></label>
                             <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                                <textarea type="text" class="form-control" name="category_description">{{ $data->category_description }}</textarea>
+                                <textarea type="text" class="form-control" name="description" placeholder="Enter Description"></textarea>
                             </div>
                         </div>
                         <div class="row mb-4 mt-4">
-                          <label class="col-sm-3 form-control-label">Category Icon: <span class="tx-danger">*</span></label>
-                          <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                              <input type="file" id="iconInput" class="form-control" name="category_icon"><br>
-                              
-                              @if ($data->icon)
-                                  <img class="img-fluid rounded" width="100px" height="50px" id="showIcon" src="{{ asset('backend-assets/images/category/' . $data->icon) }}" id="showIcon" alt="">
-                              @else
-                                  <img class="img-fluid rounded" width="100px" height="50px" id="showIcon" src="{{ asset('backend-assets/images/default.jpg') }}" id="showIcon" alt="">
-                              @endif
-                          </div>
-                      </div>
-
-                      <div class="row mb-4 mt-4">
-                        <label class="col-sm-3 form-control-label">Category Image: <span class="tx-danger">*</span></label>
-                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                            <input type="file" class="form-control" name="category_image" id="imageInput" /><br>
-                           
-                            @if ($data->image_path)
-                                  <img class="img-fluid rounded" width="100px" height="50px"  src="{{ asset('backend-assets/images/category/' . $data->image_path) }}" id="showImage" alt="">
-                              @else
-                                  <img class="img-fluid rounded" width="100px" height="50px"  src="{{ asset('backend-assets/images/default.jpg') }}" id="showImage" alt="">
-                              @endif
+                            <label class="col-sm-3 form-control-label">Category Icon: <span class="tx-danger">*</span></label>
+                            <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                            <input type="file" id="iconInput" class="form-control" name="category_icon"><br>
+                            <img class="img-fluid rounded" width="100px" height="50px" id="showIcon" src="{{asset('backend-assets/images/default.jpg')}}" alt="">
+                            </div>
                         </div>
-                      </div>
+                        <div class="row mb-4 mt-4">
+                            <label class="col-sm-3 form-control-label">Category Image: <span class="tx-danger">*</span></label>
+                            <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                            <input type="file" class="form-control " name="category_image" id="imageInput" required/><br>
+                            <img class="img-fluid rounded" width="100px" height="50px" id="showImage" src="{{asset('backend-assets/images/default.jpg')}}" alt="">
+                            </div>
+                        </div>
 
                         
 
                         <div class="row mb-4 mt-4">
                             <label class="col-sm-3 form-control-label">Status: <span class="tx-danger">*</span></label>
                             <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                                <select class="form-select " name="status" required>
+                                <select class="form-control " name="status" required>
                                     <option value="">---Select---</option>
-                                    <option value="1" {{ $data->status == 1 ? 'selected' : '' }}>Active</option>
-                                    <option value="0" {{ $data->status == 2 ? 'selected' : '' }}>Inactive</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
                                 </select>
                             </div>
                         </div>
@@ -115,6 +117,7 @@
 <script src="{{asset('backend-assets/js/pages/datatables.init.js')}}"></script>
 
 <script type="text/javascript">
+  $(document).ready(function(){
     iconInput.onchange = evt => {
       const [file] = iconInput.files
       if (file) {
@@ -127,5 +130,8 @@
         showImage.src = URL.createObjectURL(file)
       }
     }
+
+
+  });
 </script>
 @endpush

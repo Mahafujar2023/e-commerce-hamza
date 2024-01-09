@@ -35,7 +35,7 @@
   <div class="col-12">
     <div class="card">
         <div class="card-header">
-            <button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#addModal">Create New Category</button>
+            <a href="{{route('admin.category.create')}}" class="btn btn-success ">Create New Category</a>
         </div>
       <div class="card-body">
         <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
@@ -50,35 +50,7 @@
             </tr>
           </thead>
           <tbody>
-          @foreach ($data as $item)
-            <tr>
-              <td>{{$item->id}}</td>
-              <td>
-                    @if($item->image_path)
-                    <img class="img-circle" height="50px"  src="{{ asset('backend-assets/images/category/' . $item->category_image) }}" alt="Photo">
 
-                    @else
-                        <img src="{{ asset('backend-assets/images/default.jpg') }}" height="50px" alt="Default Photo">
-                    @endif
-                </td>
-              <td>{{$item->category_name }}</td>
-              <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
-              <td>
-                @if ($item->status==1)
-                  <span class="badge  bg-success ">Active</span>
-                  @else 
-                  <span class="badge bg-danger">InActive</span>
-                @endif
-              </td>
-              <td>
-                <!-- Add your action buttons here -->
-                <a class="btn btn-primary btn-sm mr-3" href="{{route('admin.category.edit', $item->id)}}"><i class="fa fa-edit"></i></a>
-                    <button  type="button"  data-id="{{ $item->id }}"  class="btn btn-danger delete-btn btn-sm mr-3"><i class="fa fa-trash"></i></button>
-              </td>
-            </tr>
-              <!-- Static Backdrop Modal -->
-            
-            @endforeach
           </tbody>
         </table>
       </div>
@@ -87,64 +59,7 @@
 </div>
 
 
-<!-- Modal for creating a new Category -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Create New Category</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Form for creating a new permission -->
-          <form  action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data">
-            @csrf
-            <div class="mb-3">
-              <label for="" class="form-label">Category List</label>
-              <select type="text" class="form-control"  name="parent_id">
-                    <option value="">---Select---</option>
-                    @forelse ($data as $item)
-                        <option value="{{ $item->id }}">{{ $item->category_name }}</option>
-                    @empty
-                        <option value="" disabled>No categories available</option>
-                    @endforelse
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="" class="form-label">Category Name</label>
-              <input type="text" class="form-control" name="category_name" placeholder="Enter Category Name" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="" class="form-label">Description</label>
-              <textarea type="text" class="form-control" name="description" placeholder="Enter Description"></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Category Icon</label>
-              <input type="file" class="form-control" name="category_icon">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Category Image</label>
-              <input type="file" class="form-control" name="category_image">
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Status</label>
-              <select type="text" class="form-control"  name="status" required>
-                <option value="">---Select---</option>
-                <option value="1">Active</option>
-                <option value="0">InActive</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Create</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <form action="{{route('admin.category.delete')}}" method="post" enctype="multipart/form-data">
@@ -156,7 +71,7 @@
             <div class="modal-body">
                 <h4 class="tx-danger  tx-semibold mg-b-20 mt-2">Are you sure! you want to delete this?</h4>
                 <input type="hidden" name="id" value="">
-            
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -166,6 +81,7 @@
         </div>
     </div>
   </div>
+
 @endsection
 
 @push('page-wise-script')
@@ -175,83 +91,104 @@
 <!-- Datatable init js -->
 <script src="{{asset('backend-assets/js/pages/datatables.init.js')}}"></script>
 
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script type="text/javascript">
-  $(document).ready(function(){
-    $("#datatable").DataTable();
-    $('#addModal form').submit(function(e){
-        e.preventDefault();
 
-        var form = $(this);
-        var url = form.attr('action');
-        var formData = form.serialize();
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: formData,
-            success: function (response) {
-<<<<<<< HEAD
-                console.log(response);
-                return false;
-=======
->>>>>>> 5106b30234320e5b6ce7571314226bb4b72733ea
-                $('#addModal').modal('hide');
-                $('#addModal form')[0].reset();
-                if (response.success) {
-                toastr.success(response.success);
-                $('#datatable1').DataTable().ajax.reload( null , false);
-                } else {
-                    if (response.errors) {
-                        var errorMessages = response.errors.join('<br>');
-                        toastr.error(errorMessages);
-                    }else {
-                        toastr.error("Error!!!");
-                    }
-                }
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
+    var table=$("#datatable").DataTable({
+        "processing":true,
+       "responsive": true,
+       "serverSide":true,
+       beforeSend: function () {
+       },
+       ajax: "{{ route('admin.category.all_data') }}",
+      language: {
+        searchPlaceholder: 'Search...',
+        sSearch: '',
+        lengthMenu: '_MENU_ items/page',
+       },
+       "columns":[
+         {
+           "data":"id"
+         },
+         {
+           "data":"image_path",
+           render: function (data, type, row) {
+             return '<img src="{{asset("backend-assets/images/category")}}/' + data + '" alt="Image" width="50" height="50">';
+           }
+         },
+         {
+           "data":"category_name"
+         },
+         {
+           "data":"created_at",
+           render: function (data, type, row) {
+               var formattedDate = moment(row.created_at).format('DD MMM YYYY');
+               return formattedDate;
+           }
+         },
+         {
+           "data":"status",
+           render:function(data,type,row){
+             if (row.status==1) {
+               return '<span class="badge bg-success">Active</span>';
+             }else{
+               return '<span class="badge bg-danger">Inactive</span>';
+             }
+           }
+         },
+
+         {
+           render:function(data,type,row){
+             return `<a href="/admin/product/category/edit/${row.id}" class="btn btn-primary btn-sm mr-3"><i class="fa fa-edit"></i></a>
+               <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>`
+           }
+         },
+       ],
+       order:[
+         [0, "desc"]
+       ],
+
+     });
+
+
+    /** Handle Delete button click**/
+    $('#datatable tbody').on('click', '.delete-btn', function () {
+      var id = $(this).data('id');
+      $('#deleteModal').modal('show');
+      var value_input = $("input[name*='id']").val(id);
     });
+      /** Handle form submission for delete **/
+    $('#deleteModal form').submit(function(e){
+      e.preventDefault();
 
-      /** Handle Delete button click**/
-      $('#datatable tbody').on('click', '.delete-btn', function () {
-        var id = $(this).data('id');
-        $('#deleteModal').modal('show');
-        var value_input = $("input[name*='id']").val(id);
-      });
-        /** Handle form submission for delete **/
-      $('#deleteModal form').submit(function(e){
-        e.preventDefault();
-
-        var form = $(this);
-        var url = form.attr('action');
-        var formData = form.serialize();
-        /** Use Ajax to send the delete request **/
-        $.ajax({
-          type:'POST',
-          'url':url,
-          data: formData,
-          success: function (response) {
-            $('#deleteModal').modal('hide');
-            if (response.success) {
-              toastr.success(response.success);
-              //table.ajax.reload();
-              $('#datatable').DataTable().ajax.reload( null , false);
-            } else {
-              /** Handle  errors **/
-              toastr.error("Error!!!");
-            }
-          },
-
-          error: function (xhr, status, error) {
+      var form = $(this);
+      var url = form.attr('action');
+      var formData = form.serialize();
+      /** Use Ajax to send the delete request **/
+      $.ajax({
+        type:'POST',
+        'url':url,
+        data: formData,
+        success: function (response) {
+          $('#deleteModal').modal('hide');
+          if (response.success) {
+            toastr.success(response.success);
+            $('#datatable').DataTable().ajax.reload( null , false);
+          } else {
             /** Handle  errors **/
-            toastr.error(xhr.responseText);
+            toastr.error("Error!!!");
           }
-        });
+        },
+
+        error: function (xhr, status, error) {
+          /** Handle  errors **/
+          toastr.error(xhr.responseText);
+        }
       });
-
-
-  });
+    });
 </script>
 @endpush
