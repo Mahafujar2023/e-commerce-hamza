@@ -9,7 +9,7 @@ use App\Http\Middleware\CheckPermission;
 use App\Http\Controllers\Backend\Products\ProductController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\CustomerController;
-
+use App\Http\Controllers\Backend\Products\ProductTagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,21 +27,12 @@ Route::get('/', function () {
 });
 
 
-<<<<<<< HEAD
-Route::group(["prefix" => "admin"], function () {
-    Route::get('/', function () {
-        return view('backend.Pages.Dashboard.index');
-    });
-    Route::get('/dashboard', function () {
-        return view('backend.Pages.Dashboard.index');
-=======
 Route::group(["prefix"=>"admin"],function(){
     Route::get('/',function(){
         return view('backend.pages.dashboard.index');
     });
     Route::get('/dashboard',function(){
         return view('backend.pages.dashboard.index');
->>>>>>> 4f35d1086fa1028806122cef1378db3d3480efa9
     });
     Route::group(["prefix" => "/ecommerce"], function () {
         Route::get('/', [ProductController::class, "index"])->name("index");
@@ -51,13 +42,8 @@ Route::group(["prefix"=>"admin"],function(){
         Route::get('/checkout', [ProductController::class, "index"])->name("index");
         Route::get('/shops', [ProductController::class, "index"])->name("index");
 
-<<<<<<< HEAD
-        Route::group(["prefix" => "/product"], function () {
-            Route::get('/product', [ProductController::class, "index"])->name("index");
-=======
         Route::group(["prefix"=>"/product"],function(){
             Route::get('/', [ProductController::class, "index"])->name("index");
->>>>>>> 4f35d1086fa1028806122cef1378db3d3480efa9
             Route::get('/create', [ProductController::class, "create"])->name("create");
             Route::get('/create', [ProductController::class, "create"])->name("create");
             Route::get('/edit', [ProductController::class, "edit"])->name("edit");
@@ -94,7 +80,7 @@ Route::group(["prefix"=>"admin"],function(){
 
 require __DIR__ . '/auth.php';
 
-// Role and permission routes
+// Role and permission routes by azhar
 Route::post('/create-role', [RoleController::class, 'createRole'])->name('createRole');
 Route::post('/create-permission', [RoleController::class, 'createPermission'])->name('createPermission');
 Route::put('/update-permission/{id}', [RoleController::class, 'permissionUpdate'])->name('updatePermission');
@@ -108,8 +94,11 @@ Route::get('/role-has-permissions/{id}', [RoleController::class, 'hasPermissions
 
 Route::get('/role-has-permissions/{id}', [RoleController::class, 'saveRolePermissions'])->name('saveRolePermissions');
 
-//customers routes
+//customers routes by azhar
 Route::resource('customers', CustomerController::class);
+
+//Tags routes by azhar
+Route::resource('tags', ProductTagController::class);
 
 //routes as middleware
 

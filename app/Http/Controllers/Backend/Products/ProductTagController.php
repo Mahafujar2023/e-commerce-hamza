@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\Products;
 
 use App\Models\ProductTag;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class ProductTagController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.pages.tag.index');
     }
 
     /**
@@ -30,7 +30,9 @@ class ProductTagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $existingTags =explode(',', $request->tags);
+        return view('backend.pages.tag.edit', compact('existingTags'));
     }
 
     /**
@@ -54,7 +56,7 @@ class ProductTagController extends Controller
      */
     public function update(Request $request, ProductTag $productTag)
     {
-        //
+       dd($request->all());
     }
 
     /**
