@@ -24,7 +24,7 @@ class ProductController extends Controller
         $data = [
             "products" => $products
         ];
-        return view('backend.pages.ecommerce.products')->with($data);
+        return view('backend.pages.product.index')->with($data);
     }
 
     /**
@@ -36,7 +36,7 @@ class ProductController extends Controller
         $data = [
             "categories" => $categories
         ];
-        return view('backend.pages.ecommerce.add_product')->with($data);
+        return view('backend.pages.product.create')->with($data);
     }
 
     /**
@@ -100,7 +100,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('backend.pages.ecommerce.product_details');
+        return view('backend.pages.product.show');
     }
     /**
      * Show the form for editing the specified resource.
