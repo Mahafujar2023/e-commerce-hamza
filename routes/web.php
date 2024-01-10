@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\Products\ProductController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\Products\ProductTagController;
+use App\Http\Controllers\ShippingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,9 @@ Route::resource('customers', CustomerController::class);
 
 //Tags routes by azhar
 Route::resource('tags', ProductTagController::class);
+
+//Tags routes by azhar
+Route::resource('shipping', ShippingController::class);
 
 //routes as middleware
 
